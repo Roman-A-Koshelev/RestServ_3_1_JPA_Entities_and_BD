@@ -1,4 +1,4 @@
-package ru.ibs.services.domain;
+package ru.ibs.services.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

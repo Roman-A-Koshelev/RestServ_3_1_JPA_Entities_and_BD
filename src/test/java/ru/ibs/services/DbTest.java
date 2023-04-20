@@ -7,12 +7,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.ibs.services.domain.Course;
-import ru.ibs.services.domain.Department;
-import ru.ibs.services.domain.Employee;
+import ru.ibs.services.domain.EmployeeRepository;
+import ru.ibs.services.domain.entity.Course;
+import ru.ibs.services.domain.entity.Department;
+import ru.ibs.services.domain.entity.Employee;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,6 +26,9 @@ import java.util.List;
 public class DbTest {
     @PersistenceContext
     EntityManager em;
+
+    @Autowired
+    EmployeeRepository empRepo;
 
     @Before
     public void setup() {
@@ -43,6 +48,12 @@ public class DbTest {
                 .setMaxResults(1)
                 .getResultList()
                 .get(0);
+        Assert.assertEquals("REST Service", emp.getCourses().get(0).getName());
+    }
+
+    @Test
+    public void test2() {
+        Employee emp = empRepo.findByFirstName("a").get();
         Assert.assertEquals("REST Service", emp.getCourses().get(0).getName());
     }
 }

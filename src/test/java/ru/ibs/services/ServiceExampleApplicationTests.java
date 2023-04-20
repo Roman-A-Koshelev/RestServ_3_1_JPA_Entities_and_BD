@@ -1,18 +1,11 @@
 package ru.ibs.services;
 
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import javax.swing.*;
-
-//@RunWith(SpringRunner.class)
 @SpringBootTest
-//@Transactional
-//@Rollback(value = false)
+@EnableJpaRepositories
 class ServiceExampleApplicationTests {
 
     @Test
