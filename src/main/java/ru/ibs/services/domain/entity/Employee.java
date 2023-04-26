@@ -1,5 +1,6 @@
 package ru.ibs.services.domain.entity;
 
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,13 +30,14 @@ public class Employee {
     private LocalDate birthday;
 
     @ManyToOne(fetch = FetchType.LAZY)
+//    @JsonIgnore
     @JoinColumn(name = "department_id", referencedColumnName = "id")
     private Department departmentId;
 
     @Column(name = "month_salary")
     private Integer monthSalary;
 
-    @ManyToMany
+    @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
     @JoinTable(name = "employee_course",
         joinColumns = @JoinColumn(name = "employee_id"),
         inverseJoinColumns = @JoinColumn(name = "course_id"))

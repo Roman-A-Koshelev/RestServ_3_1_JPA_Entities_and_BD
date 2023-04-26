@@ -1,5 +1,6 @@
 package ru.ibs.services.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+@JsonIgnoreProperties("hibernateLazyInitializer")
 @Table(name = "department")
 public class Department {
     @Id

@@ -55,7 +55,7 @@ public class DbTest {
 
     @Test
     public void test2() {
-        Employee emp = empRepo.findByFirstName("a").get();
+        Employee emp = empRepo.findAllByFirstName("a").get(0);
         Assert.assertEquals("REST Service", emp.getCourses().get(0).getName());
     }
 }
