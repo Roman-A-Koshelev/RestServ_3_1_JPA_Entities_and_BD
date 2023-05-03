@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import ru.ibs.services.business.SalaryService;
-import ru.ibs.services.domain.entity.Employee;
+import ru.ibs.services.dto.EmployeeDtoMS;
 
 @RestController
 @RequestMapping("/v2/salary/max")
@@ -19,7 +19,7 @@ public class SalaryController {
 
     @GetMapping("/department/{departmentId}")
     @Operation(operationId = "maxSalaryEmployeeInDep", summary = "Get max salary employee.")
-    public Employee maxSalaryEmployeeInDepartment(@PathVariable Long departmentId) {
+    public EmployeeDtoMS maxSalaryEmployeeInDepartment(@PathVariable Long departmentId) {
         return salaryService.maxSalaryEmployeeInDepartment(departmentId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Department or employees not found."));

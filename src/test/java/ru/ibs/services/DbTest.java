@@ -34,9 +34,10 @@ public class DbTest {
 
     @Before
     public void setup() {
-        Department dep = new Department(null, "IT");
+        Department dep = new Department(null, "IT", null);
         Course course = new Course(null, "REST Service");
         Employee emp = new Employee(null, "a", "b", LocalDate.now(), dep, 500000, List.of(course));
+        dep.setEmployees(List.of(emp));
 
         em.persist(dep);
         em.persist(course);
