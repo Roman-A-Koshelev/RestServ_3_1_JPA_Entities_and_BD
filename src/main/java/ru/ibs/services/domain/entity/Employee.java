@@ -29,15 +29,15 @@ public class Employee {
     @Column(name = "birthday", nullable = false)
     private LocalDate birthday;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 //    @JsonIgnore
-    @JoinColumn(name = "department_id", referencedColumnName = "id")
-    private Department departmentId;
+    @JoinColumn(name = "department_id", nullable = false, referencedColumnName = "id")
+    private Department department;
 
     @Column(name = "month_salary")
     private Integer monthSalary;
 
-    @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "employee_course",
         joinColumns = @JoinColumn(name = "employee_id"),
         inverseJoinColumns = @JoinColumn(name = "course_id"))
