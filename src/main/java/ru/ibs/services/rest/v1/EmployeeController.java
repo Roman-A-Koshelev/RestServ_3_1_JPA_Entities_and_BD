@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import ru.ibs.services.domain.EmployeeRepository;
@@ -17,6 +18,7 @@ public class EmployeeController {
     private EmployeeRepository repo;
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('WRITER')")
     void deleteEmployee(@PathVariable Long id) {
         repo.deleteById(id);
     }
