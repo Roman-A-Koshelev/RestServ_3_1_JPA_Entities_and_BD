@@ -1,7 +1,7 @@
 package ru.ibs.services.domain.entity;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
