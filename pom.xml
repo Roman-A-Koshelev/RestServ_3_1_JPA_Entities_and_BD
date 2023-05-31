@@ -21,11 +21,11 @@
 		<!-- <org.springdoc.version>2.1.0</org.springdoc.version> --> <!-- for Spring-boot v3 -->
 	</properties>
 	<dependencies>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.keycloak</groupId>
 			<artifactId>keycloak-spring-boot-starter</artifactId>
 			<version>${org.keycloak.version}</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>

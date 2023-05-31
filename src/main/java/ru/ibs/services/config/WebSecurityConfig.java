@@ -1,5 +1,6 @@
 package ru.ibs.services.config;
-
+public class WebSecurityConfig {}
+/*
 import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
@@ -52,3 +53,4 @@ public class WebSecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
                     .defaultSuccessUrl(indexUrl, true);
     }
 }
+*/

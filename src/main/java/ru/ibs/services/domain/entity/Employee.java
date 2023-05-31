@@ -37,6 +37,10 @@ public class Employee {
     @Column(name = "month_salary")
     private Integer monthSalary;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "boss_id")
+    private Employee boss;
+
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "employee_course",
         joinColumns = @JoinColumn(name = "employee_id"),

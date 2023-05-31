@@ -6,13 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import ru.ibs.services.business.EmployeeService;
 import ru.ibs.services.domain.EmployeeRepository;
 import ru.ibs.services.domain.entity.Employee;
+import ru.ibs.services.dto.EmployeeDtoMS;
+
+import java.util.List;
 
 @RestController("employee controller v2")
 @RequestMapping("/v2/employees")
 @Slf4j
 public class EmployeeController {
+    @Autowired
+    private EmployeeService employeeService;
+
     @Autowired
     private EmployeeRepository repo;
 
@@ -29,6 +36,28 @@ public class EmployeeController {
     Employee getById(@PathVariable Long id) {
         return repo.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    // Получить список непосредственных подчиненных руководителя (Get a list of the manager's direct subordinates)
+    @GetMapping("/subordinates/{bossId}")
+    @Operation(operationId = "getAllEmployeesByBossId", summary = "Получить список непосредственных подчиненных руководителя")
+    public List<EmployeeDtoMS> getAllEmployeesByBossId(@PathVariable Long bossId) {
+        List<EmployeeDtoMS> empLs = employeeService.getAllEmployeesByBossId(bossId);
+        if (null == empLs || empLs.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Employees or Boss not found.");
+        }
+
+        return empLs;
+    }
+
+    // Получить непосредственного руководителя сотрудника
+    @GetMapping("/bosses/{empId}")
+    @Operation(operationId = "getBossOf", summary = "Получить непосредственного руководителя сотрудника")
+    public EmployeeDtoMS getBossOf(Long empId) {
+        return employeeService.getBossOf(empId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Employee or Boss not found."));
     }
 
     @PostMapping
