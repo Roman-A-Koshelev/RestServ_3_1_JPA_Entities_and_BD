@@ -73,6 +73,9 @@ databaseChangeLog:
               - column:
                   name: boss_id
                   type: bigint
+                  constraints:
+                    foreignKeyName: fk_employee_employee
+                    references: employee(id)
         - createTable:
             tableName: employee_course
             columns:

@@ -40,21 +40,14 @@ public class DbTest {
         Department dep = new Department(null, "IT", null);
         Course course = new Course(null, "REST Service");
         Employee emp1 = new Employee(null, "a", "s", LocalDate.now(), dep, 500000, null, List.of(course));
-        dep.setEmployees(List.of(emp1));
+        Employee emp2 = new Employee(null, "b", "t", LocalDate.now(), dep, 300000, emp1, List.of(course));
+        Employee emp3 = new Employee(null, "c", "u", LocalDate.now(), dep, 1000000, emp1, List.of(course));
+        Employee emp4 = new Employee(null, "d", "v", LocalDate.now(), dep, 500000, emp1, List.of(course));
+        dep.setEmployees(List.of(emp1,emp2,emp3,emp4));
 
         em.persist(dep);
         em.persist(course);
         em.persist(emp1);
-
-        Employee boss = empRepo.findAllByFirstName("a").get(0);
-        dep = depRepo.findAllByName("IT").get(0);
-        course = em.createQuery("FROM Course", Course.class)
-                .setMaxResults(1)
-                .getResultList()
-                .get(0);
-        Employee emp2 = new Employee(null, "b", "t", LocalDate.now(), dep, 300000, boss, List.of(course));
-        Employee emp3 = new Employee(null, "c", "u", LocalDate.now(), dep, 1000000, boss, List.of(course));
-        Employee emp4 = new Employee(null, "d", "v", LocalDate.now(), dep, 500000, boss, List.of(course));
         em.persist(emp2);
         em.persist(emp3);
         em.persist(emp4);
