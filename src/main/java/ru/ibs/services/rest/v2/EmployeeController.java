@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import ru.ibs.services.business.EmployeeService;
@@ -63,6 +64,7 @@ public class EmployeeController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(operationId = "addEmp", summary = "Add new employee.")
+    @PreAuthorize("hasRole('WRITER')")
     Employee newEmployee(@RequestBody Employee employee) {
         log.info("--------------------------------------------------------------------------------");
         if (employee.getId() != null) {

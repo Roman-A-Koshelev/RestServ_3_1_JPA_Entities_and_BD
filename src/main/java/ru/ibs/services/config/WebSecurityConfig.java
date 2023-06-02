@@ -1,6 +1,5 @@
 package ru.ibs.services.config;
-public class WebSecurityConfig {}
-/*
+
 import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
@@ -16,8 +15,8 @@ import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper
 import org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
-//@KeycloakConfiguration
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
+@KeycloakConfiguration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     @Override
     protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
@@ -53,4 +52,3 @@ public class WebSecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
                     .defaultSuccessUrl(indexUrl, true);
     }
 }
-*/

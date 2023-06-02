@@ -37,6 +37,7 @@ public class EmployeeController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(operationId = "addEmp", summary = "Add new employee.")
+    @PreAuthorize("hasRole('WRITER')")
     Employee newEmployee(@RequestBody Employee employee) {
         log.info("--------------------------------------------------------------------------------");
         if (employee.getId() != null) {
